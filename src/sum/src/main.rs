@@ -4,34 +4,10 @@ use std::process;
 fn main() {
   loop {
     println!("Please enter the first number: ");
-
-    let mut first = String::new();
-    io::stdin().read_line(&mut first).unwrap();
-
-    let a: u32;
-
-    match first.trim().parse() {
-      Ok(val) => a = val,
-      Err(_err) => {
-        println!("Not a number!");
-        process::exit(1)
-      }
-    };
+    let a = read_user_input();
 
     println!("Please enter a second number: ");
-
-    let mut second = String::new();
-    io::stdin().read_line(&mut second).unwrap();
-
-    let b: u32;
-
-    match second.trim().parse() {
-      Ok(val) => b = val,
-      Err(_err) => {
-        println!("Not a number!");
-        process::exit(1)
-      }
-    };
+    let b = read_user_input();
 
     let result = sum(a, b);
     println!("Result: {}", result);
@@ -40,4 +16,21 @@ fn main() {
 
 fn sum(a: u32, b: u32) -> u32 {
   a + b
+}
+
+fn read_user_input() -> u32 {
+  let mut input = String::new();
+  io::stdin().read_line(&mut input).unwrap();
+
+  let digit: u32;
+
+  match input.trim().parse() {
+    Ok(val) => digit = val,
+    Err(_err) => {
+      println!("Not a number!");
+      process::exit(1)
+    }
+  };
+
+  digit
 }
