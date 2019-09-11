@@ -1,7 +1,10 @@
-fn main() {
-  let mut name = "Pascal";
-  println!("Hello, {}!", name);
+use std::io;
 
-  name = "Alice";
-  println!("Hello, {}!", name);
+fn main() {
+  println!("Please enter your name: ");
+
+  let mut name = String::new();
+  io::stdin().read_line(&mut name).unwrap();
+
+  println!("Hello, {}!", name.trim());
 }
